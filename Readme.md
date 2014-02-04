@@ -9,13 +9,13 @@ do they require having a Parse or Facebook developer account.
 
 The first component in Bolts is "tasks", which make organization of complex
 asynchronous code more manageable. A task is kind of like a JavaScript Promise,
-but available for iOS and Android.
+but available for Java.
 
-For more information, see the [Bolts Android API Reference](http://boltsframework.github.io/docs/android/).
+For more information, see the [Bolts Java API Reference](http://boltsframework.github.io/docs/java/).
 
 # Tasks
 
-To build a truly responsive Android application, you must keep long-running operations off of the UI thread, and be careful to avoid blocking anything the UI thread might be waiting on. This means you will need to execute various operations in the background. To make this easier, we've added a class called `Task`. A task represents an asynchronous operation. Typically, a `Task` is returned from an asynchronous function and gives the ability to continue processing the result of the task. When a task is returned from a function, it's already begun doing its job. A task is not tied to a particular threading model: it represents the work being done, not where it is executing. Tasks have many advantages over other methods of asynchronous programming, such as callbacks and `AsyncTask`.
+To build a truly responsive Java application, you must keep long-running operations off of the UI thread, and be careful to avoid blocking anything the UI thread might be waiting on. This means you will need to execute various operations in the background. To make this easier, we've added a class called `Task`. A task represents an asynchronous operation. Typically, a `Task` is returned from an asynchronous function and gives the ability to continue processing the result of the task. When a task is returned from a function, it's already begun doing its job. A task is not tied to a particular threading model: it represents the work being done, not where it is executing. Tasks have many advantages over other methods of asynchronous programming, such as callbacks and `AsyncTask`.
 * They consume fewer system resources, since they don't occupy a thread while waiting on other tasks.
 * They are independent of threading model, so you don't have to worry about reaching the maximum number of allowed threads, as can happen with `AsyncTask`.
 * Performing several tasks in a row will not create nested "pyramid" code as you would get when using only callbacks.
@@ -276,32 +276,7 @@ findAsync(query).continueWithTask(new Continuation<List<ParseObject>, Void>() {
 
 ## Task Executors
 
-All of the `continueWith` and `onSuccess` methods can take an instance of `java.util.concurrent.Executor` as an optional second argument. This allows you to control how the continuation is executed. The default executor will use its own thread pool, but you can provide your own executor to schedule work onto a different thread. For example, if you want to continue with work on the UI thread:
-
-```java
-import java.util.concurrent.Executor;
-import android.os.Handler;
-import android.os.Looper;
-
-// Add this member to your class.
-static Executor uiThreadExecutor = new Executor() {
-  public void execute(Runnable command) {
-    new Handler(Looper.getMainLooper()).post(command);
-  }
-};
-```
-
-```java
-// And use the uiThreadExecutor like this. The executor applies only to the new
-// continuation being passed into continueWith.
-fetchAsync(object).continueWith(new Continuation<ParseObject, Void>() {
-  public Void then(ParseObject object) throws Exception {
-    TextView textView = (TextView)findViewById(R.id.name);
-    textView.setText(object.get("name"));
-    return null;
-  }
-}, uiThreadExecutor);
-```
+All of the `continueWith` and `onSuccess` methods can take an instance of `java.util.concurrent.Executor` as an optional second argument. This allows you to control how the continuation is executed. The default executor will use its own thread pool, but you can provide your own executor to schedule work onto a different thread.
 
 ## Capturing Variables
 

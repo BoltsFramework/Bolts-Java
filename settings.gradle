@@ -1,0 +1,3 @@
+rootProject.name='Bolts-Android'
+include ':Bolts', \
+':BoltsTest'

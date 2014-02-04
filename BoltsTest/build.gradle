@@ -1,0 +1,18 @@
+apply plugin: 'java'
+
+sourceCompatibility = JavaVersion.VERSION_1_6
+targetCompatibility = JavaVersion.VERSION_1_6
+
+dependencies {
+    testCompile 'junit:junit-dep:4.10'
+    compile project(':Bolts')
+}
+
+sourceSets {
+    main {
+        java.srcDirs = []
+    }
+    test {
+        java.srcDirs = ['src']
+    }
+}

@@ -19,9 +19,9 @@ import bolts.AggregateException;
 import bolts.Continuation;
 import bolts.Task;
 
-import android.test.InstrumentationTestCase;
+import junit.framework.TestCase;
 
-public class TaskTest extends InstrumentationTestCase {
+public class TaskTest extends TestCase {
   private void runTaskTest(Callable<Task<?>> callable) {
     try {
       Task<?> task = callable.call();
