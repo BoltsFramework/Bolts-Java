@@ -316,4 +316,4 @@ saveAsync(obj1).onSuccessTask(new Continuation<ParseObject, ParseObject>() {
 
 # Build Instructions
 
-    ./gradlew clean :Bolts:jar :Bolts:javadocs
+    ./gradlew clean :Bolts:jar :Bolts:javadoc
