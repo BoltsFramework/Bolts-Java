@@ -1,5 +1,7 @@
-Bolts
+[Archive] Bolts-Java
 ============
+
+**Note:** *Bolts-Java is not under active development. If you're looking for an alternative, [Bolts-Android](https://github.com/BoltsFramework/Bolts-Android) supports JVM.*
 
 Bolts is a collection of low-level libraries designed to make developing mobile
 apps easier. Bolts was designed by Parse and Facebook for our own internal use,
